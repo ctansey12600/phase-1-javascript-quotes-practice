@@ -21,9 +21,7 @@ function quotesCard(singleQuote){
 
    card.querySelector(".btn-success").addEventListener("click", (e) =>{
        let num = parseInt(e.target.childNodes[1].textContent)
-       console.log(num)
        num += 1
-       console.log(num)
        e.target.childNodes[1].textContent = num
        addLikes(singleQuote)
    })
@@ -66,23 +64,22 @@ function handleSubmit(e){
 
 function addLikes(singleQuote){
     console.log(singleQuote)
-    //let like = e.target.querySelector('span')
-    //let num = parseInt(like.textContent)
-    //num += 1
-    //let id = parseInt(e.target.id)
-   //fetch(`http://localhost:3000/likes/${id}`, {
-   //     method: "POST",
-    //    headers: {
-     //       "Content-Type": "application/json",
-       //    "accept": "application/json"
+   //fetch(`http://localhost:3000/likes/${singleQuote.id}`, {
+     //   method: "POST",
+       // headers: {
+         //   "Content-Type": "application/json",
+           //"accept": "application/json"
        //},
         //body: JSON.stringify({
-         ///  quoteId: id,
-           //likes: num
-        //})
-    //})
-    //.then(res => res.json())
-    //.then(res => {like.textContent = res.likes})
+          //  singleQuote = likes: [{
+                 //   quoteId : singleQuote.id
+            //    }]
+            
+           
+       // })
+   // })
+    .then(res => res.json())
+    .then(res => console.log(res))
 }
 
 
