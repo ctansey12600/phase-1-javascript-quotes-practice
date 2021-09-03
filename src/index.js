@@ -24,6 +24,7 @@ function quotesCard(singleQuote){
        num += 1
        e.target.childNodes[1].textContent = num
        addLikes(singleQuote)
+       addNumLikes(singleQuote)
    })
        
    card.querySelector(".btn-danger").addEventListener("click", () => {
@@ -63,25 +64,48 @@ function handleSubmit(e){
 //Like Button
 
 function addLikes(singleQuote){
-    console.log(singleQuote)
-   //fetch(`http://localhost:3000/likes/${singleQuote.id}`, {
-     //   method: "POST",
-       // headers: {
-         //   "Content-Type": "application/json",
-           //"accept": "application/json"
+    
+   fetch(`http://localhost:3000/likes`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+           "accept": "application/json"
+       },
+        body: JSON.stringify({
+                quoteId : singleQuote.id
+        })
+    })
+    .then(res => res.json())
+   // .then(res => {
+     //   
+       // fetch(`http://localhost:3000/quotes/${singleQuote.id}`, {
+        //method: "POST",
+        //headers: {
+          //  "Content-Type": "application/json",
+          // "accept": "application/json"
        //},
         //body: JSON.stringify({
-          //  singleQuote = likes: [{
-                 //   quoteId : singleQuote.id
-            //    }]
-            
-           
-       // })
+         //       likes : res
+        //})
+    //}).then(res => res.json())
+   // .then(res => res)
    // })
+
+}
+
+function addNumLikes(singleQuote){
+    fetch(`http://localhost:3000/quotes/${singleQuote.id}`, {
+        method: "Patch",
+        headers: {
+            "Content-Type": "application/json",
+           "accept": "application/json"
+       },
+        body: JSON.stringify({singleQuote
+        })
+    })
     .then(res => res.json())
     .then(res => console.log(res))
 }
-
 
 //Delete Button
 
